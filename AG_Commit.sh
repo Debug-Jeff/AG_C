@@ -1,13 +1,18 @@
 @echo off
+REM Turns off command echoing to keep console output clean
 
-REM File path
-cd /d "C:\Users\...\....\"
+REM Navigate to the repository directory - Replace ... with your actual path
+cd /d "C:\Users\...\...."
 
-
+REM Stage all changes in the repository
 git add .
 
-
+REM Enable delayed environment variable expansion
+REM This is needed to use !variables! later in the script
 setlocal enabledelayedexpansion
+
+REM Define an array of generic commit messages
+REM Each message is stored in messages[index] from 0 to 19
 set messages[0]=Refactor code to improve readability
 set messages[1]=Fix minor bugs and update documentation
 set messages[2]=Optimize performance for critical functions
@@ -29,10 +34,19 @@ set messages[17]=Update README with usage instructions
 set messages[18]=Patch security vulnerabilities
 set messages[19]=Implement feature flags for testing
 
-
+REM Generate a random number between 0 and 19
+REM %random% generates a number between 0 and 32767
+REM %% 20 gets the remainder when divided by 20 (0-19)
 set /a randomIndex=%random% %% 20
+
+REM Select a random message from the array using the random index
+REM !messages[%randomIndex%]! uses delayed expansion to get the message
 set commitMessage=!messages[%randomIndex%]!
 
+REM Commit changes with the randomly selected message
+REM -m flag specifies the commit message
 git commit -m "!commitMessage!"
 
+REM Push the changes to the main branch of the remote repository
+REM Warning: This pushes directly to main without review
 git push origin main
