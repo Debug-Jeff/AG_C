@@ -44,9 +44,7 @@ REM !messages[%randomIndex%]! uses delayed expansion to get the message
 set commitMessage=!messages[%randomIndex%]!
 
 REM Commit changes with the randomly selected message
-REM -m flag specifies the commit message
 git commit -m "!commitMessage!"
 
 REM Push the changes to the main branch of the remote repository
-REM Warning: This pushes directly to main without review
 git push origin main
