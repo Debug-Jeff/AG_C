@@ -1,6 +1,7 @@
 @echo off
 
-cd /d "C:\Users\HP\Documents\My_Files\[1]Code\react-project"
+REM File path
+cd /d "C:\Users\...\....\"
 
 
 git add .
